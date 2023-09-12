@@ -7,7 +7,7 @@ fn main() {
 
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
-    println!("The secret number is not much of a secret, it is: {secret_number}");
+    // println!("The secret number is not much of a secret, it is: {secret_number}");
 
     loop {
         println!("Please guess a number.");
@@ -20,7 +20,13 @@ fn main() {
 
         println!("You guessed: {guess}");
 
-        let guess: u32 = guess.trim().parse().expect("Please guess a number!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please enter a number and only a number.");
+                continue;
+            }
+        };
 
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too Low!"),
