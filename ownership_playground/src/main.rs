@@ -43,6 +43,17 @@ fn main() {
     let numb = 12;
     makes_copy(numb);
     println!("{numb}");
+
+    let pinocchio = gives_ownership();
+    println!("{pinocchio}");
+
+    let sky_daddy = String::from("Beardyboy");
+    let sky_daddy2 = takes_and_gives_back(sky_daddy);
+    println!("{sky_daddy2}");
+
+    let noodle = String::from("fettuccine");
+    let (flat_noodle, length) = takes_and_gives_moar(noodle);
+    println!("flatnoodle = {flat_noodle} with length {length}");
 }
 
 fn takes_ownership(input_string: String) {
@@ -51,4 +62,19 @@ fn takes_ownership(input_string: String) {
 
 fn makes_copy(input_number: i32) {
     println!("input was: {input_number}");
+}
+
+fn gives_ownership() -> String {
+    String::from("I'm a real boy!")
+}
+
+fn takes_and_gives_back(input_string: String) -> String {
+    println!("boomerang: {input_string}");
+    input_string
+}
+
+fn takes_and_gives_moar(input_string: String) -> (String, usize) {
+    let length = input_string.len();
+    println!("Input string {input_string} has a length of {length}");
+    (input_string, length)
 }
